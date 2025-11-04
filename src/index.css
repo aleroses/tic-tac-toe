@@ -8,13 +8,21 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* background-color: #242424; */
+  background-color: #090b10;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --first-color: #090b10;
+  --second-color: #0f111a;
+  --third-color: #4f46e5;
+  --fourth-color: #cbd5e1;
+  --fitfh-color: #55667c;
+  --red-logo: #ea0031;
 }
 
 * {
@@ -24,11 +32,17 @@
 }
 
 body {
+  min-width: 320px;
+  min-height: 100vh;
+
   margin: 0;
   display: flex;
   justify-content: center;
-  min-width: 320px;
-  min-height: 100vh;
+  align-items: center;
+  background: url('assets/background/tictactoe-opt-desktop.png')
+    no-repeat center / cover;
+  /* object-fit: cover; */
+  background-size: 62%;
 }
 
 .board {
@@ -37,33 +51,27 @@ body {
   text-align: center;
 }
 
-.board h1 {
+/* .board h1 {
   color: #eee;
   margin-bottom: 16px;
-}
-
-.board button {
-  padding: 8px 12px;
-  margin: 25px;
-  background: transparent;
-  border: 2px solid #eee;
-  color: #eee;
-  width: 100px;
-  border-radius: 5px;
-  transition: 0.2s;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.board button:hover {
-  background: #eee;
-  color: #222;
-}
+} */
 
 .board .game {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+}
+
+.game .square {
+  /* Testing */
+  /* background: rgba(255, 255, 255, 0.1); */
+  background: rgba(0, 0, 0, 0.1);
+  /* el efecto de "vidrio" */
+  backdrop-filter: blur(10px);
+  /* para compatibilidad */
+  -webkit-backdrop-filter: blur(10px);
+
+  /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
 }
 
 .turn {
@@ -86,6 +94,24 @@ body {
 .square.is-selected {
   color: #fff;
   background: #09f;
+}
+
+.board button {
+  padding: 8px 12px;
+  margin: 25px;
+  background: transparent;
+  border: 2px solid #eee;
+  color: #eee;
+  width: 100px;
+  border-radius: 5px;
+  transition: 0.2s;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.board button:hover {
+  background: #eee;
+  color: #222;
 }
 
 .winner {

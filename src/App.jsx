@@ -62,8 +62,7 @@ function App() {
 
   return (
     <main className='board'>
-      <h1>Tic tac toe</h1>
-
+      {/* <h1>Tic tac toe</h1> */}
       <button onClick={resetGame}>Reset of the game</button>
 
       <section className='game'>
@@ -84,6 +83,7 @@ function App() {
         <Square isSelected={turn === TURNS.X}>
           {TURNS.X}
         </Square>
+
         <Square isSelected={turn === TURNS.O}>
           {TURNS.O}
         </Square>
