@@ -39,10 +39,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url('assets/background/tictactoe-opt-desktop.png')
-    no-repeat center / cover;
+  background: url('assets/background/Tic-Tac-Toe.png')
+    /* no-repeat center / cover */;
+
   /* object-fit: cover; */
-  background-size: 62%;
+  background-size: 50%;
 }
 
 .board {
@@ -157,3 +158,15 @@ body {
   cursor: pointer;
   font-size: 48px;
 }
+
+/* 
+https://es.textstudio.com/logo/parodia-de-super-mario-599
+
+Texto:
+Espaciado entre caracteres 0
+Altura de línea 78
+
+Estilos:
+Boggle - Ángulo 0
+Amplitude 12
+*/
