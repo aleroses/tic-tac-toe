@@ -3,25 +3,25 @@ export const Square = ({
   isSelected,
   updateBoard,
   index,
-  board,
-  turn,
-  winner,
-  size,
-  setBoard,
-  setTurn,
-  setWinner,
+  // board,
+  // turn,
+  // winner,
+  // size,
+  // setBoard,
+  // setTurn,
+  // setWinner,
 }) => {
   const classes = `square ${isSelected ? 'is-selected' : ''}`;
   const handleClick = () => {
     updateBoard(
-      index,
-      board,
-      turn,
-      winner,
-      size,
-      setBoard,
-      setTurn,
-      setWinner
+      index
+      // board,
+      // turn,
+      // winner,
+      // size,
+      // setBoard,
+      // setTurn,
+      // setWinner
     );
   };
 

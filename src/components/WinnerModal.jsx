@@ -5,8 +5,6 @@ export const WinnerModal = ({ winner, resetGame }) => {
 
   const winnerText = winner ? `Won` : 'Tie';
 
-  console.log(winner);
-
   return (
     <section className='winner'>
       <div className='text'>
