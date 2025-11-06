@@ -3,7 +3,9 @@ import { Square } from './Square';
 export const WinnerModal = ({ winner, resetGame }) => {
   if (winner === null) return null;
 
-  const winnerText = winner === false ? 'Tie' : `Won`;
+  const winnerText = winner ? `Won` : 'Tie';
+
+  console.log(winner);
 
   return (
     <section className='winner'>

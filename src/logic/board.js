@@ -1,7 +1,8 @@
 import { WINNER_COMBOS } from '../constants';
+import { winningCombinations } from './winningCombinations';
 
-export const checkWinnerFrom = (boardToCheck) => {
-  for (const combo of WINNER_COMBOS) {
+export const checkWinner = (currentBoard, size) => {
+  /* for (const combo of winningCombinations) {
     const [a, b, c] = combo;
 
     if (
@@ -13,7 +14,20 @@ export const checkWinnerFrom = (boardToCheck) => {
     }
   }
 
-  return null;
+  return null; */
+
+  const wins = winningCombinations(size);
+
+  return wins.some((line) => {
+    const [first, ...rest] = line;
+
+    return (
+      currentBoard[first] &&
+      rest.every((i) => {
+        return currentBoard[i] === currentBoard[first];
+      })
+    );
+  });
 };
 
 export const checkEndGame = (newBoard) => {
