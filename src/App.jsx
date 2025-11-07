@@ -1,67 +1,47 @@
-import { useState } from 'react';
-
 import { Square } from './components/Square';
-import { TURNS } from './constants';
+import { SELECT_BOXES, TURNS } from './constants';
 import { WinnerModal } from './components/WinnerModal';
-import { resetGameStorage } from './logic/storage';
-import { updateBoard } from './logic/updateBoard';
 import { useBoard } from './hooks/useBoard';
+import { SelectBoxes } from './components/SelectBoxes';
+import { useState } from 'react';
+import { saveBoxes } from './logic/storage';
 
 function App() {
-  const size = 3;
-  const totalSquares = size * size;
+  const [boxes, setBoxes] = useState(() => {
+    return window.localStorage.getItem('boxes') ?? 3;
+  });
+
+  // const size = 3;
 
   const { board, turn, winner, updateBoard, resetGame } =
-    useBoard(size);
+    useBoard(boxes);
 
-  // const [board, setBoard] = useState(() => {
-  //   // The function is only executed once
-  //   const boardFromStorage =
-  //     window.localStorage.getItem('board');
+  const updateBoxes = (item) => {
+    setBoxes(item);
 
-  //   return boardFromStorage
-  //     ? JSON.parse(boardFromStorage)
-  //     : Array(totalSquares).fill(null);
-  // });
-  // const [turn, setTurn] = useState(() => {
-  //   const turnFromStorage =
-  //     window.localStorage.getItem('turn');
-
-  //   return turnFromStorage ?? TURNS.X;
-  // });
-  // const [winner, setWinner] = useState(null);
-
-  // const resetGame = () => {
-  //   setBoard(Array(totalSquares).fill(null));
-
-  //   setTurn(TURNS.X);
-  //   setWinner(null);
-
-  //   resetGameStorage();
-  // };
-
-  const gameClasses =
-    size > 3 && size < 5 ? `game${size}` : `game${size}`;
+    saveBoxes(item);
+  };
 
   return (
     <main className='board'>
-      <section className={`game ${gameClasses}`}>
+      <section className='options'>
+        {SELECT_BOXES.map((item, index) => (
+          <SelectBoxes
+            key={index}
+            item={item}
+            updateBoxes={updateBoxes}
+            resetGame={resetGame}
+          >
+            {item}
+          </SelectBoxes>
+        ))}
+      </section>
+
+      <section className={`game game${boxes}`}>
         {board.map((square, index) => (
           <Square
             key={index}
             index={index}
-            // updateBoard={() =>
-            //   updateBoard({
-            //     index,
-            //     board,
-            //     turn,
-            //     winner,
-            //     size,
-            //     setBoard,
-            //     setTurn,
-            //     setWinner,
-            //   })
-            // }
             updateBoard={updateBoard}
           >
             {square}
@@ -74,7 +54,9 @@ function App() {
           {TURNS.X}
         </Square>
 
-        <button onClick={resetGame}>Reset of the game</button>
+        <button className='reset' onClick={resetGame}>
+          Reset of the game
+        </button>
 
         <Square isSelected={turn === TURNS.O}>
           {TURNS.O}

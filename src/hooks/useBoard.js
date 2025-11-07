@@ -1,27 +1,36 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TURNS } from '../constants';
 import {
   resetGameStorage,
   saveGameToStorage,
 } from '../logic/storage';
-import { checkEndGame, checkWinner } from '../logic/board';
 import confetti from 'canvas-confetti';
+import { checkWinner } from '../logic/checkWinner';
+import { checkEndGame } from '../logic/checkEndGame';
 
 export const useBoard = (size = 3) => {
   const totalSquares = size * size;
 
   const [board, setBoard] = useState(() => {
-    const stored = window.localStorage.getItem('board');
-    return stored
-      ? JSON.parse(stored)
+    const boardStorage = window.localStorage.getItem('board');
+    return boardStorage
+      ? JSON.parse(boardStorage)
       : Array(totalSquares).fill(null);
   });
 
   const [turn, setTurn] = useState(() => {
-    return window.localStorage.getItem('turn') ?? TURNS.X;
+    const turnStorage = window.localStorage.getItem('turn');
+    return turnStorage ?? TURNS.X;
   });
 
   const [winner, setWinner] = useState(null);
+
+  useEffect(() => {
+    // 👇 Si el tamaño cambia, reseteamos el tablero automáticamente
+    setBoard(Array(size * size).fill(null));
+    setWinner(null);
+    setTurn(TURNS.X);
+  }, [size]);
 
   const updateBoard = (index) => {
     if (board[index] || winner) return;
