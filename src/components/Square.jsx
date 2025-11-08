@@ -11,7 +11,13 @@ export const Square = ({
 
   return (
     <div onClick={handleClick} className={classes}>
-      {children}
+      {children ? (
+        <img
+          src={children.src}
+          alt={children.name}
+          className='character-icon'
+        />
+      ) : null}
     </div>
   );
 };
