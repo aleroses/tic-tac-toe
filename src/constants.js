@@ -11,14 +11,14 @@ export const SELECT_LEVEL = [
 // };
 
 export const CHARACTERS = [
-  { name: 'Mario', src: './src/assets/mario.svg' },
-  { name: 'Koopa', src: './src/assets/koopa.svg' },
-  { name: 'Toad', src: './src/assets/toad.svg' },
-  { name: 'Bowser', src: './src/assets/bowser.svg' },
-  { name: 'Goomba', src: './src/assets/goomba.svg' },
-  { name: 'Piranha', src: './src/assets/pirana.svg' },
-  { name: 'Racoon', src: './src/assets/racoon.svg' },
-  { name: 'Star', src: './src/assets/star.svg' },
+  { name: 'Mario', src: '/assets/mario.svg' },
+  { name: 'Koopa', src: '/assets/koopa.svg' },
+  { name: 'Toad', src: '/assets/toad.svg' },
+  { name: 'Bowser', src: '/assets/bowser.svg' },
+  { name: 'Goomba', src: '/assets/goomba.svg' },
+  { name: 'Piranha', src: '/assets/pirana.svg' },
+  { name: 'Racoon', src: '/assets/racoon.svg' },
+  { name: 'Star', src: '/assets/star.svg' },
 ];
 
 /* export const WINNER_COMBOS = [
