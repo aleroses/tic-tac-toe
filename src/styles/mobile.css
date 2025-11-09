@@ -42,7 +42,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  background: url('/assets/background/tictactoe-opt-desktop.png')
+  background: url('/src/assets/background/tictactoe-opt-desktop.png')
     no-repeat center / cover;
 
   /* object-fit: cover; */
