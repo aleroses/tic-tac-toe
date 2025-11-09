@@ -1,14 +1,10 @@
 import { CHARACTERS } from '../constants';
-// import { Square } from './Square';
 
 export const WinnerModal = ({ winner, resetGame }) => {
   if (winner === null) return null;
 
   const winnerCharacter =
-    winner &&
-    CHARACTERS.find(
-      (c) => c.name.toLowerCase() === winner.toLowerCase()
-    );
+    winner && CHARACTERS.find((c) => c.name === winner);
 
   const winnerText = winner
     ? `${winner} won!`

@@ -8,11 +8,14 @@ import { CharacterSelector } from './components/CharacterSelector';
 import { useBoard } from './hooks/useBoard';
 import { saveBoxes } from './logic/storage';
 
-import { SELECT_BOXES, TURNS } from './constants';
+import { SELECT_LEVEL } from './constants';
 
 function App() {
   const [boxes, setBoxes] = useState(() => {
-    return window.localStorage.getItem('boxes') ?? 3;
+    return (
+      window.localStorage.getItem('boxes') ??
+      SELECT_LEVEL[0].boxes
+    );
   });
 
   const [player1, setPlayer1] = useState(null);
@@ -31,15 +34,16 @@ function App() {
 
   return (
     <main className='board'>
-      <section className='options'>
-        {SELECT_BOXES.map((item, index) => (
+      <section className='levels'>
+        {SELECT_LEVEL.map((item, index) => (
           <SelectBoxes
             key={index}
-            item={item}
+            item={item.boxes}
             updateBoxes={updateBoxes}
             resetGame={resetGame}
+            active={boxes === item.boxes}
           >
-            {item}
+            {item.level}
           </SelectBoxes>
         ))}
       </section>

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { CHARACTERS, TURNS } from '../constants';
+import confetti from 'canvas-confetti';
+
+import { CHARACTERS } from '../constants';
 import {
   resetGameStorage,
   saveGameToStorage,
 } from '../logic/storage';
-import confetti from 'canvas-confetti';
 import { checkWinner } from '../logic/checkWinner';
 import { checkEndGame } from '../logic/checkEndGame';
 
@@ -54,8 +55,6 @@ export const useBoard = (size = 3, player1, player2) => {
     newBoard[index] = currentPlayer;
 
     setBoard(newBoard);
-
-    console.log(board);
 
     const newTurn = turn === player1 ? player2 : player1;
     setTurn(newTurn);

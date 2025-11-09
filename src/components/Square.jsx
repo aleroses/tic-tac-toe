@@ -4,13 +4,13 @@ export const Square = ({
   updateBoard,
   index,
 }) => {
-  const classes = `square ${isSelected ? 'is-selected' : ''}`;
+  // const classes = `square ${isSelected ? 'is-selected' : ''}`;
   const handleClick = () => {
     updateBoard(index);
   };
 
   return (
-    <div onClick={handleClick} className={classes}>
+    <div onClick={handleClick} className='square'>
       {children ? (
         <img
           src={children.src}

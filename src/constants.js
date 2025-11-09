@@ -1,9 +1,14 @@
-export const SELECT_BOXES = ['3', '4', '5'];
+// export const SELECT_BOXES = ['3', '4', '5'];
+export const SELECT_LEVEL = [
+  { level: 'Easy', boxes: '3' },
+  { level: 'Medium', boxes: '4' },
+  { level: 'Hard', boxes: '5' },
+];
 
-export const TURNS = {
-  X: '×',
-  O: '○',
-};
+// export const TURNS = {
+//   X: '×',
+//   O: '○',
+// };
 
 export const CHARACTERS = [
   { name: 'Mario', src: './src/assets/mario.svg' },
