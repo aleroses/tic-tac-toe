@@ -42,7 +42,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  background: url('/src/assets/background/tictactoe-opt-desktop.png')
+  background: url('/src/assets/background/tictactoe4.png')
     no-repeat center / cover;
 
   /* object-fit: cover; */
@@ -266,14 +266,20 @@ body {
 }
 
 .label {
+  /* padding: 0.1rem; */
   margin-top: 80px;
-  font-family: 'DynaPuff_SemiCondensed-Bold', sans-serif;
-  font-size: 14px;
-  text-align: center;
+
   color: #fff;
   text-shadow: 1px 1px 2px #000;
 
+  font-family: 'DynaPuff_SemiCondensed-Bold', sans-serif;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 0.2rem;
+
   /* background-color: var(--third-color); */
+  background: rgba(0, 0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .board .reset {
@@ -292,10 +298,10 @@ body {
   cursor: pointer;
 }
 
-.board button:hover {
+/* .board button:hover {
   color: #222;
   background: #eee;
-}
+} */
 
 .winner {
   position: absolute;
@@ -340,6 +346,28 @@ body {
   height: 100px;
   object-fit: contain;
   animation: bounce 0.8s ease infinite alternate;
+}
+
+.modal-reset button {
+  padding: 8px 12px;
+  /* margin: 25px; */
+
+  border-radius: 0.5rem;
+  border: 2px solid var(--fourth-color);
+  color: var(--fourth-color);
+  background: transparent;
+
+  transition: 0.2s;
+  font-weight: bold;
+  cursor: pointer;
+
+  background-color: var(--second-color);
+}
+
+.modal-reset button:hover {
+  background-color: var(--first-color);
+  /* color: var(--fitfh-color); */
+  border: 2px solid var(--fitfh-color);
 }
 
 @keyframes bounce {

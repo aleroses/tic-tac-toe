@@ -25,7 +25,7 @@ export const WinnerModal = ({ winner, resetGame }) => {
           )}
         </header>
 
-        <footer>
+        <footer className='modal-reset'>
           <button onClick={resetGame}>Start over!!!</button>
         </footer>
       </div>

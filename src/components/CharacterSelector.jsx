@@ -22,8 +22,6 @@ export const CharacterSelector = ({
 
     while (CHARACTERS[next].name === excludeOpponent) {
       next = (next + 1) % CHARACTERS.length;
-
-      console.log('While interno: ', next);
     }
 
     setIndex(next);
