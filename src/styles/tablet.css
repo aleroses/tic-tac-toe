@@ -1,12 +1,12 @@
 @media (min-width: 480px) {
   body {
-    /* background: url('/src/assets/background/tictactoe4.png')
+    /* background: url('/src/assets/background/background.png')
       no-repeat center center fixed; */
 
     /* background-size: cover; */
     /* background-size: 70% auto; */
   }
-  
+
   #root {
     width: 300px;
   }

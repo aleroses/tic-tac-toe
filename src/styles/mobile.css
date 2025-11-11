@@ -280,6 +280,7 @@ body {
 
 .board .reset {
   width: fit-content;
+  /* max-width: 130px; */
   height: fit-content;
   padding: 8px 12px;
   /* margin: 25px; */
