@@ -1,0 +1,9 @@
+@media (min-width: 768px) {
+  #root {
+    width: 320px;
+  }
+
+  .board .levels {
+    gap: 3rem;
+  }
+}

@@ -10,6 +10,8 @@ import { saveBoxes } from './logic/storage';
 
 import { SELECT_LEVEL } from './constants';
 
+import logo from './assets/logo.png';
+
 function App() {
   const [boxes, setBoxes] = useState(() => {
     return (
@@ -34,6 +36,7 @@ function App() {
 
   return (
     <main className='board'>
+      <img className='logo' src={logo} alt='Logo' />
       <section className='levels'>
         {SELECT_LEVEL.map((item, index) => (
           <SelectBoxes

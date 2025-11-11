@@ -1,30 +1,3 @@
-:root {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
-    'Helvetica Neue', sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  /* background-color: #242424; */
-  background-color: #090b10;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-
-  --first-color: #090b10;
-  --second-color: #0f111a;
-  --third-color: #4f46e5;
-  --fourth-color: #cbd5e1;
-  --fitfh-color: #55667c;
-  --red-logo: #ea0031;
-}
-
 * {
   padding: 0;
   margin: 0;
@@ -37,27 +10,33 @@ body {
   max-width: 30rem;
   */
   height: 100vh;
+  min-height: 100vh;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background: url('/src/assets/background/tictactoe4.png')
+  /* background: url('/src/assets/background/tictactoe4.png')
     no-repeat center / cover;
 
-  /* object-fit: cover; */
-  background-size: 100% auto;
+  background-size: 100% auto; */
+  /* background: url('/src/assets/background/tictactoe4.png')
+    no-repeat center center fixed;
+  background-size: cover; */
 }
 
 /* ********** Container ********** */
 
 #root {
-  width: 300px;
-  height: 520px;
+  /* width: 300px;
+  height: 520px; */
+
+  width: min(90vw, 280px);
+  height: auto;
+  margin: 0 0 2rem;
 
   display: flex;
   justify-content: center;
-  /* align-items: center; */
 
   /* background-color: var(--fitfh-color); */
 }
@@ -66,18 +45,27 @@ body {
 
 .board {
   width: 96%;
-  margin: 20px 0;
+  margin: 1rem 0;
 
   text-align: center;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: flex-start; */
+  /* align-items: flex-start; */
 
   /* background-color: var(--red-logo); */
+}
+
+/* ********** Logo ********** */
+.board .logo {
+  width: 100%;
 }
 
 /* ********** Levels ********** */
 
 .board .levels {
   /* width: fit-content; */
-  margin: 1rem 0.5rem;
+  margin: 0 0.5rem;
 
   display: flex;
   justify-content: center;
@@ -128,9 +116,12 @@ body {
 
 .board .game {
   /* width: 96%; */
-  height: 44vh;
+  /* height: 44vh; */
   /* max-height: 420px; */
 
+  /* width: 100%; */
+
+  aspect-ratio: 1 / 1;
   margin: 1rem 0.5rem;
 
   display: grid;
@@ -140,7 +131,7 @@ body {
     auto-fit,
     minmax(min(80px, 100%), 1fr)
     ); */
-  gap: 10px;
+  gap: 0.5rem;
 
   /* background-color: var(--fitfh-color); */
 }
@@ -165,7 +156,7 @@ body {
   /* width: auto;
   height: 100%; */
   border: 2px solid #eee;
-  border-radius: 5px;
+  /* border-radius: 5px; */
 
   /* display: grid;
   place-items: center; */
@@ -182,6 +173,9 @@ body {
 
   cursor: pointer;
   /* font-size: 48px; */
+
+  border-radius: 0.3rem;
+  font-size: clamp(1rem, 4vw, 2rem);
 }
 
 .square:hover {
@@ -204,12 +198,13 @@ body {
 
 .board .options {
   margin: 1rem 0.5rem;
+  /* margin: 1rem 0.5rem 0.5rem; */
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  gap: 1rem;
+  gap: 0.5rem;
   /* background-color: var(--third-color); */
 }
 
@@ -266,6 +261,7 @@ body {
 }
 
 .label {
+  /* width: 80px; */
   /* padding: 0.1rem; */
   margin-top: 80px;
 

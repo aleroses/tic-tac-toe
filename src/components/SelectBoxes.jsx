@@ -6,8 +6,6 @@ export const SelectBoxes = ({
   active,
 }) => {
   const handleClick = () => {
-    console.log('click: ', item);
-
     updateBoxes(item);
     resetGame();
   };
