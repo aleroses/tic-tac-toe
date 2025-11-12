@@ -5,9 +5,6 @@ export const CharacterSelector = ({
   label,
   setPlayer,
   excludeOpponent,
-  // isSelected,
-  // updateBoard,
-  // index,
 }) => {
   const [index, setIndex] = useState(0);
 
