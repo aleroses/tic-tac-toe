@@ -28,20 +28,21 @@ function App() {
   const { board, turn, winner, updateBoard, resetGame } =
     useBoard(boxes, player1, player2);
 
-  const updateBoxes = (item) => {
-    setBoxes(item);
+  const updateBoxes = (boxes) => {
+    setBoxes(boxes);
 
-    saveBoxes(item);
+    saveBoxes(boxes);
   };
 
   return (
     <main className='board'>
       <img className='logo' src={logo} alt='Logo' />
+      
       <section className='levels'>
         {LEVELS.map((item, index) => (
           <LevelSelector
             key={index}
-            item={item.boxes}
+            boxes={item.boxes}
             level={item.level}
             updateBoxes={updateBoxes}
             resetGame={resetGame}

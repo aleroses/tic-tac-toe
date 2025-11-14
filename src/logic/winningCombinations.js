@@ -21,7 +21,7 @@ export const winningCombinations = (size) => {
 
   const mainDiagonal = [];
   for (let i = 0; i < size; i++) {
-    // 0 4 7
+    // 0 4 8
     mainDiagonal.push(i * size + i);
   }
   wins.push(mainDiagonal);

@@ -1,18 +1,18 @@
 export const LevelSelector = ({
   level,
-  item,
+  boxes,
   updateBoxes,
   resetGame,
   active,
 }) => {
   const handleClick = () => {
-    updateBoxes(item);
+    updateBoxes(boxes);
     resetGame();
   };
 
   return (
     <button
-      className={`box box-${item} ${
+      className={`level box-${boxes} ${
         active ? 'active-level' : ''
       }`}
       onClick={handleClick}

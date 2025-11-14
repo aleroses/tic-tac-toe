@@ -81,7 +81,7 @@ body {
   justify-content: space-between;
 }
 
-.board .levels .box {
+.board .levels .level {
   padding: 0.25rem 0.5rem;
 
   border-radius: 2rem;
@@ -93,13 +93,13 @@ body {
   user-select: none;
 }
 
-.board .levels .box:hover {
+.board .levels .level:hover {
   border-color: var(--fitfh-color);
   color: var(--fourth-color);
   background-color: var(--second-color);
 }
 
-.levels .box.active-level {
+.levels .level.active-level {
   color: var(--fourth-color);
   background: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
