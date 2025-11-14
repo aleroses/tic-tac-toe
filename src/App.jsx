@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { SelectBoxes } from './components/SelectBoxes';
+import { LevelSelector } from './components/LevelSelector';
 import { Square } from './components/Square';
 import { WinnerModal } from './components/WinnerModal';
 import { CharacterSelector } from './components/CharacterSelector';
@@ -8,7 +8,7 @@ import { CharacterSelector } from './components/CharacterSelector';
 import { useBoard } from './hooks/useBoard';
 import { saveBoxes } from './logic/storage';
 
-import { SELECT_LEVEL } from './constants';
+import { LEVELS } from './constants';
 
 import logo from './assets/logo.png';
 
@@ -38,16 +38,15 @@ function App() {
     <main className='board'>
       <img className='logo' src={logo} alt='Logo' />
       <section className='levels'>
-        {SELECT_LEVEL.map((item, index) => (
-          <SelectBoxes
+        {LEVELS.map((item, index) => (
+          <LevelSelector
             key={index}
             item={item.boxes}
+            level={item.level}
             updateBoxes={updateBoxes}
             resetGame={resetGame}
             active={boxes === item.boxes}
-          >
-            {item.level}
-          </SelectBoxes>
+          />
         ))}
       </section>
 

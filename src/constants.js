@@ -8,7 +8,7 @@ import racoon from './assets/racoon.svg';
 import star from './assets/star.svg';
 
 // export const SELECT_BOXES = ['3', '4', '5'];
-export const SELECT_LEVEL = [
+export const LEVELS = [
   { level: 'Easy', boxes: '3' },
   { level: 'Medium', boxes: '4' },
   { level: 'Hard', boxes: '5' },

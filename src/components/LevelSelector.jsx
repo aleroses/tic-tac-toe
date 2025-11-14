@@ -1,5 +1,5 @@
-export const SelectBoxes = ({
-  children,
+export const LevelSelector = ({
+  level,
   item,
   updateBoxes,
   resetGame,
@@ -17,7 +17,12 @@ export const SelectBoxes = ({
       }`}
       onClick={handleClick}
     >
-      {children}
+      {level}
     </button>
   );
 };
+
+/* 
+SelectBoxes
+LevelSelector
+*/
