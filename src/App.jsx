@@ -15,29 +15,25 @@ import logo from './assets/logo.png';
 function App() {
   const [boxes, setBoxes] = useState(() => {
     return (
-      window.localStorage.getItem('boxes') ??
-      SELECT_LEVEL[0].boxes
+      window.localStorage.getItem('boxes') ?? LEVELS[0].boxes
     );
   });
 
   const [player1, setPlayer1] = useState(null);
   const [player2, setPlayer2] = useState(null);
 
-  // const size = 3;
-
   const { board, turn, winner, updateBoard, resetGame } =
     useBoard(boxes, player1, player2);
 
   const updateBoxes = (boxes) => {
     setBoxes(boxes);
-
     saveBoxes(boxes);
   };
 
   return (
     <main className='board'>
       <img className='logo' src={logo} alt='Logo' />
-      
+
       <section className='levels'>
         {LEVELS.map((item, index) => (
           <LevelSelector
@@ -63,7 +59,7 @@ function App() {
         ))}
       </section>
 
-      <section className='options'>
+      <section className='characters'>
         <CharacterSelector
           label='Player 1'
           setPlayer={setPlayer1}

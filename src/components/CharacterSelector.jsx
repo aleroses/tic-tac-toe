@@ -8,17 +8,18 @@ export const CharacterSelector = ({
 }) => {
   const [index, setIndex] = useState(0);
 
+  const characterLength = CHARACTERS.length;
   const current = CHARACTERS[index];
-  const next = CHARACTERS[(index + 1) % CHARACTERS.length];
+  const next = CHARACTERS[(index + 1) % characterLength];
 
   const nextCharacter = () => {
-    let next = (index + 1) % CHARACTERS.length;
+    let next = (index + 1) % characterLength;
 
     // Evita repetir personaje que ya eligió el otro jugador
     // excludeOpponent = jugador 2 / 1
 
     while (CHARACTERS[next].name === excludeOpponent) {
-      next = (next + 1) % CHARACTERS.length;
+      next = (next + 1) % characterLength;
     }
 
     setIndex(next);

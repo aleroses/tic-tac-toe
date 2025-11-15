@@ -176,7 +176,7 @@ body {
 
 /* ********** Options ********** */
 
-.board .options {
+.board .characters {
   margin: 1rem 0.5rem;
   /* margin: 1rem 0.5rem 0.5rem; */
 
@@ -187,7 +187,7 @@ body {
   gap: 0.8rem;
 }
 
-.options .character-selector {
+.characters .character-selector {
   position: relative;
   width: 5rem;
   height: 5rem;
@@ -253,7 +253,7 @@ body {
   -webkit-backdrop-filter: blur(1rem);
 }
 
-.options .reset {
+.characters .reset {
   /* width: fit-content;
   height: fit-content; */
   padding: 8px 12px;
@@ -268,7 +268,7 @@ body {
   cursor: pointer;
 }
 
-.options .reset:hover {
+.characters .reset:hover {
   color: var(--first-color);
   background: var(--fourth-color);
 }
@@ -290,16 +290,16 @@ body {
 }
 
 .winner .text {
-  height: 20rem;
   width: 20rem;
-  border: 2px solid var(--fourth-color);
-  border-radius: 0.625rem;
+  height: 20rem;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
+  border: 2px solid var(--fourth-color);
+  border-radius: 0.625rem;
   background: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(1rem);
   -webkit-backdrop-filter: blur(1rem);

@@ -7,7 +7,6 @@ import pirana from './assets/pirana.svg';
 import racoon from './assets/racoon.svg';
 import star from './assets/star.svg';
 
-// export const SELECT_BOXES = ['3', '4', '5'];
 export const LEVELS = [
   { level: 'Easy', boxes: '3' },
   { level: 'Medium', boxes: '4' },
