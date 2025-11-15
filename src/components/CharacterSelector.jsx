@@ -26,8 +26,6 @@ export const CharacterSelector = ({
     setPlayer(CHARACTERS[next].name);
   };
 
-  // const classes = `square ${isSelected ? 'is-selected' : ''}`;
-
   return (
     <div
       className='character-selector'
