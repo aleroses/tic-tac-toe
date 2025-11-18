@@ -1,15 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CHARACTERS } from '../constants';
 
 export const CharacterSelector = ({
   label,
+  current,
   setPlayer,
   excludeOpponent,
 }) => {
-  const [index, setIndex] = useState(0);
+  const initialIndex = Math.max(
+    0,
+    CHARACTERS.findIndex((c) => c.name === current)
+  );
+  const [index, setIndex] = useState(
+    initialIndex === -1 ? 0 : initialIndex
+  );
+
+  useEffect(() => {
+    // si el current cambia desde fuera, sincronizamos
+    const idx = CHARACTERS.findIndex(
+      (c) => c.name === current
+    );
+    if (idx >= 0 && idx !== index) setIndex(idx);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [current]);
 
   const characterLength = CHARACTERS.length;
-  const current = CHARACTERS[index];
+  const currentCharacter = CHARACTERS[index];
   const next = CHARACTERS[(index + 1) % characterLength];
 
   const nextCharacter = () => {
@@ -18,21 +34,49 @@ export const CharacterSelector = ({
     // Evita repetir personaje que ya eligió el otro jugador
     // excludeOpponent = jugador 2 / 1
 
-    while (CHARACTERS[next].name === excludeOpponent) {
+    let loops = 0;
+    while (
+      CHARACTERS[next].name === excludeOpponent &&
+      loops < characterLength
+    ) {
       next = (next + 1) % characterLength;
+      loops++;
     }
 
     setIndex(next);
     setPlayer(CHARACTERS[next].name);
   };
 
+  /*   const prevCharacter = () => {
+    let prev =
+      (index - 1 + characterLength) % characterLength;
+
+    let loops = 0;
+    while (
+      CHARACTERS[prev].name === excludeOpponent &&
+      loops < characterLength
+    ) {
+      prev = (prev - 1 + characterLength) % characterLength;
+      loops++;
+    }
+
+    setIndex(prev);
+    setPlayer(CHARACTERS[prev].name);
+  };
+
+  const currentCharacter = CHARACTERS[index]; */
+
   return (
     <div
       className='character-selector'
+      aria-label={label}
       onClick={nextCharacter}
     >
       <div className='character-current'>
-        <img src={current.src} alt={current.name} />
+        <img
+          src={currentCharacter.src}
+          alt={currentCharacter.name}
+        />
       </div>
 
       <div className='character-next'>
@@ -40,7 +84,7 @@ export const CharacterSelector = ({
       </div>
 
       <p className='label'>
-        {label}: {current.name}
+        {label}: {currentCharacter.name}
       </p>
     </div>
   );

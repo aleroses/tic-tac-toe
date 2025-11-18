@@ -1,4 +1,4 @@
-export const saveBoxes = (boxes) => {
+/* export const saveBoxes = (boxes) => {
   window.localStorage.setItem('boxes', boxes);
 };
 
@@ -11,3 +11,4 @@ export const resetGameStorage = () => {
   window.localStorage.removeItem('board');
   window.localStorage.removeItem('turn');
 };
+ */

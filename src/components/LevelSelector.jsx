@@ -16,13 +16,10 @@ export const LevelSelector = ({
         active ? 'active-level' : ''
       }`}
       onClick={handleClick}
+      aria-pressed={active}
+      aria-label={`Select ${level} (${boxes}x${boxes})`}
     >
       {level}
     </button>
   );
 };
-
-/* 
-SelectBoxes
-LevelSelector
-*/

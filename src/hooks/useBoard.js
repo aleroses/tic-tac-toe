@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+/* import { useEffect, useState } from 'react';
 import confetti from 'canvas-confetti';
 
 import { CHARACTERS } from '../constants';
@@ -92,3 +92,4 @@ export const useBoard = (size = 3, player1, player2) => {
     resetGame,
   };
 };
+ */
