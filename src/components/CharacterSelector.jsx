@@ -11,15 +11,11 @@ export const CharacterSelector = ({
     0,
     CHARACTERS.findIndex((c) => c.name === current)
   );
-  const [index, setIndex] = useState(
-    initialIndex === -1 ? 0 : initialIndex
-  );
+  const [index, setIndex] = useState(initialIndex === -1 ? 0 : initialIndex);
 
   useEffect(() => {
     // si el current cambia desde fuera, sincronizamos
-    const idx = CHARACTERS.findIndex(
-      (c) => c.name === current
-    );
+    const idx = CHARACTERS.findIndex((c) => c.name === current);
     if (idx >= 0 && idx !== index) setIndex(idx);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current]);
@@ -47,25 +43,6 @@ export const CharacterSelector = ({
     setPlayer(CHARACTERS[next].name);
   };
 
-  /*   const prevCharacter = () => {
-    let prev =
-      (index - 1 + characterLength) % characterLength;
-
-    let loops = 0;
-    while (
-      CHARACTERS[prev].name === excludeOpponent &&
-      loops < characterLength
-    ) {
-      prev = (prev - 1 + characterLength) % characterLength;
-      loops++;
-    }
-
-    setIndex(prev);
-    setPlayer(CHARACTERS[prev].name);
-  };
-
-  const currentCharacter = CHARACTERS[index]; */
-
   return (
     <div
       className='character-selector'
@@ -73,10 +50,7 @@ export const CharacterSelector = ({
       onClick={nextCharacter}
     >
       <div className='character-current'>
-        <img
-          src={currentCharacter.src}
-          alt={currentCharacter.name}
-        />
+        <img src={currentCharacter.src} alt={currentCharacter.name} />
       </div>
 
       <div className='character-next'>
