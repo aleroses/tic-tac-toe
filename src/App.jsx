@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { LevelSelector } from './components/LevelSelector';
 import { Square } from './components/Square';
@@ -63,10 +63,16 @@ function App() {
 
   const setPlayer = (slot, playerName) => {
     // slot: 'player1' | 'player2'
-    const payload = {
+    /* const payload = {
       player1: slot === 'player1' ? playerName : player1,
       player2: slot === 'player2' ? playerName : player2,
+    }; */
+
+    const payload = {
+      ...state,
+      [slot]: playerName,
     };
+
     dispatch({ type: 'SET_PLAYERS', payload });
   };
 

@@ -16,8 +16,8 @@ export const CharacterSelector = ({
   useEffect(() => {
     // si el current cambia desde fuera, sincronizamos
     const idx = CHARACTERS.findIndex((c) => c.name === current);
+
     if (idx >= 0 && idx !== index) setIndex(idx);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current]);
 
   const characterLength = CHARACTERS.length;
