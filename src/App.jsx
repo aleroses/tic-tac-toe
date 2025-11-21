@@ -5,9 +5,6 @@ import { Square } from './components/Square';
 import { WinnerModal } from './components/WinnerModal';
 import { CharacterSelector } from './components/CharacterSelector';
 
-// import { useBoard } from './hooks/useBoard';
-// import { saveBoxes } from './logic/storage';
-
 import { LEVELS } from './constants';
 
 import logo from './assets/logo.png';
@@ -32,6 +29,25 @@ function App() {
     }
   }, [winner]);
 
+  const updateBoxes = (boxes) => {
+    dispatch({ type: 'SET_SIZE', payload: boxes });
+  };
+
+  const setPlayer = (player, name) => {
+    // slot: 'player1' | 'player2'
+    /* const payload = {
+      player1: slot === 'player1' ? playerName : player1,
+      player2: slot === 'player2' ? playerName : player2,
+    }; */
+
+    const payload = {
+      ...state,
+      [player]: name,
+    };
+
+    dispatch({ type: 'SET_PLAYERS', payload });
+  };
+
   // Si no hay `turn` y existen ambos players, asignamos player1 como turno inicial
   // (esto en componentes puede verificarse y dispatch SET_PLAYERS si necesario)
 
@@ -53,27 +69,8 @@ function App() {
     });
   };
 
-  const updateBoxes = (boxes) => {
-    dispatch({ type: 'SET_SIZE', payload: boxes });
-  };
-
   const resetGame = () => {
     dispatch({ type: 'RESET' });
-  };
-
-  const setPlayer = (slot, playerName) => {
-    // slot: 'player1' | 'player2'
-    /* const payload = {
-      player1: slot === 'player1' ? playerName : player1,
-      player2: slot === 'player2' ? playerName : player2,
-    }; */
-
-    const payload = {
-      ...state,
-      [slot]: playerName,
-    };
-
-    dispatch({ type: 'SET_PLAYERS', payload });
   };
 
   return (
