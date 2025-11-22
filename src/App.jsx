@@ -2,21 +2,24 @@ import { useContext, useEffect } from 'react';
 
 import { LevelSelector } from './components/LevelSelector';
 import { Square } from './components/Square';
-import { WinnerModal } from './components/WinnerModal';
 import { CharacterSelector } from './components/CharacterSelector';
-
-import { LEVELS } from './constants';
-
-import logo from './assets/logo.png';
+import { WinnerModal } from './components/WinnerModal';
 
 import { GameContext } from './context/GameContext';
 import { isDraw, updateBoard } from './logic/board';
 import { checkWinner } from './logic/checkWinner';
+
+import { LEVELS } from './constants';
 import confetti from 'canvas-confetti';
+
+import logo from './assets/logo.png';
 
 function App() {
   const { state, dispatch } = useContext(GameContext);
-  const { board, turn, winner, player1, player2, size } = state;
+  const { size, board, player1, player2, turn, winner } =
+    state;
+
+  console.log(state);
 
   // Efecto para lanzar confetti cuando hay un ganador
   useEffect(() => {
@@ -63,7 +66,12 @@ function App() {
       type: 'PLAY',
       payload: {
         board: newBoard,
-        turn: newWinner || draw ? null : turn === player1 ? player2 : player1,
+        turn:
+          newWinner || draw
+            ? null
+            : turn === player1
+            ? player2
+            : player1,
         winner: newWinner ? turn : draw ? false : null,
       },
     });
@@ -75,9 +83,17 @@ function App() {
 
   return (
     <main className='board' aria-live='polite'>
-      <img className='logo' src={logo} alt='Tic Tac Toe Logo' />
+      <img
+        className='logo'
+        src={logo}
+        alt='Tic Tac Toe Logo'
+      />
 
-      <section className='levels' role='tablist' aria-label='Game difficulty'>
+      <section
+        className='levels'
+        role='tablist'
+        aria-label='Game difficulty'
+      >
         {LEVELS.map((item, index) => (
           <LevelSelector
             key={index}
@@ -130,7 +146,11 @@ function App() {
         />
       </section>
 
-      <WinnerModal dispatch={dispatch} winner={winner} resetGame={resetGame} />
+      <WinnerModal
+        dispatch={dispatch}
+        winner={winner}
+        resetGame={resetGame}
+      />
     </main>
   );
 }
