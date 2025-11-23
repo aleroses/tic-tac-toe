@@ -3,7 +3,7 @@ import { CHARACTERS } from '../constants';
 export const WinnerModal = ({
   winner,
   resetGame,
-  dispatch,
+  // dispatch,
 }) => {
   if (winner === null) return null;
 
@@ -13,6 +13,14 @@ export const WinnerModal = ({
   const winnerText = winner
     ? `${winner} won!`
     : 'It’s a tie!';
+
+  const handleClick = () => {
+    // reset UI + state
+    // dispatch({ type: 'RESET' });
+
+    // if (typeof resetGame === 'function') resetGame();
+    resetGame();
+  };
 
   return (
     <section
@@ -39,16 +47,7 @@ export const WinnerModal = ({
         </header>
 
         <footer className='modal-reset'>
-          <button
-            onClick={() => {
-              // reset UI + state
-              dispatch({ type: 'RESET' });
-
-              if (typeof resetGame === 'function')
-                resetGame();
-            }}
-            autoFocus
-          >
+          <button onClick={handleClick} autoFocus>
             Start over!!!
           </button>
         </footer>

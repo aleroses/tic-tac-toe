@@ -33,7 +33,13 @@ function App() {
   }, [winner]);
 
   const updateBoxes = (boxes) => {
-    dispatch({ type: 'SET_SIZE', payload: boxes });
+    dispatch({
+      type: 'SET_SIZE',
+      payload: {
+        size: boxes,
+        turn: player2 ? player1 : null,
+      },
+    });
   };
 
   const setPlayer = (player, name) => {
@@ -100,7 +106,7 @@ function App() {
             boxes={item.boxes}
             level={item.level}
             updateBoxes={updateBoxes}
-            resetGame={resetGame}
+            // resetGame={resetGame}
             active={size === item.boxes}
           />
         ))}
@@ -147,7 +153,7 @@ function App() {
       </section>
 
       <WinnerModal
-        dispatch={dispatch}
+        // dispatch={dispatch}
         winner={winner}
         resetGame={resetGame}
       />

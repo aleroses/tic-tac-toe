@@ -12,7 +12,7 @@ export const initialGameState = {
 export const gameReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_SIZE': {
-      const size = action.payload;
+      const { size, turn } = action.payload;
 
       return {
         ...state,
@@ -20,7 +20,9 @@ export const gameReducer = (state = {}, action) => {
         board: createEmptyBoard(size),
         winner: null,
         // si ya hay player1 lo dejamos como turno por defecto
-        turn: state.player1 ?? null,
+        // turn: state.player1 ?? null,
+        // turn: null,
+        turn
       };
     }
 
@@ -54,7 +56,8 @@ export const gameReducer = (state = {}, action) => {
         ...state,
         board: createEmptyBoard(state.size),
         winner: null,
-        turn: state.player1 ?? null,
+        // turn: state.player1 ?? null,
+        turn: null,
       };
 
     default:
