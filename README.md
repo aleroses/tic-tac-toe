@@ -1,7 +1,7 @@
 # 🎮 Tic Tac Toe — Mario Edition
 
 A fun and colorful **Tic Tac Toe** game built with **Vite + React (JavaScript)**.  
-Inspired by the world of **Mario Bros**, it brings a nostalgic look with modern web technologies.  
+Inspired by the world of **Mario Bros**, it brings a nostalgic look with modern web technologies.
 
 This project is **open source** — everyone is welcome to contribute!
 
@@ -20,6 +20,7 @@ This project is **open source** — everyone is welcome to contribute!
 
 ## 🛠️ Installation & Setup
 
+c
 Follow these steps to run the project locally:
 
 ```bash
@@ -52,3 +53,7 @@ If you’d like to improve this project, follow these steps:
 
 Please keep your code clean and follow consistent naming conventions.
 
+## 📚 Development documentation
+
+You can see how it was built step by step here:
+➡️ [Development Guide](./docs/development-guide.md)

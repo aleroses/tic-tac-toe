@@ -22,7 +22,7 @@ export const gameReducer = (state = {}, action) => {
         // si ya hay player1 lo dejamos como turno por defecto
         // turn: state.player1 ?? null,
         // turn: null,
-        turn
+        turn,
       };
     }
 
@@ -36,7 +36,7 @@ export const gameReducer = (state = {}, action) => {
         player2,
         turn,
         // board: state.board,
-        board: createEmptyBoard(state.size),
+        // board: createEmptyBoard(state.size),
         winner: null,
       };
     }
@@ -57,7 +57,8 @@ export const gameReducer = (state = {}, action) => {
         board: createEmptyBoard(state.size),
         winner: null,
         // turn: state.player1 ?? null,
-        turn: null,
+        // turn: null,
+        turn: state.player2 ? state.player1 : null,
       };
 
     default:
