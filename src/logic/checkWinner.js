@@ -20,8 +20,9 @@ export const checkWinner = (boardNames, size) => {
 
   for (const combo of wins) {
     const first = boardNames[combo[0]];
-    
-    if (!first) continue; // si la primera posición es null, no puede ganar esa línea
+
+    // si la primera posición es null, no puede ganar esa línea
+    if (!first) continue;
 
     let allEqual = true;
     for (let i = 1; i < combo.length; i++) {
