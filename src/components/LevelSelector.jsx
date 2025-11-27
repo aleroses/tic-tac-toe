@@ -12,9 +12,7 @@ export const LevelSelector = ({
 
   return (
     <button
-      className={`level box-${boxes} ${
-        active ? 'active-level' : ''
-      }`}
+      className={`level ${active ? 'active-level' : ''}`}
       onClick={handleClick}
       aria-pressed={active}
       aria-label={`Select ${level} (${boxes}x${boxes})`}
