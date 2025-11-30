@@ -1,4 +1,3 @@
-// Encapsula todo el acceso a localStorage para el estado del juego
 const KEY = 'tic-tac-toe-state';
 
 export const GameStorage = {
@@ -13,9 +12,8 @@ export const GameStorage = {
 
       localStorage.setItem(KEY, JSON.stringify(data));
     } catch (e) {
-      // si el storage falla, no rompemos la app
       // podrías reportar este error a un logger si tienes
-      console.warn('GameStorage.save failed', e);
+      console.warn('GameStorage.save failed.', e);
     }
   },
 
@@ -25,7 +23,7 @@ export const GameStorage = {
 
       return stored ? JSON.parse(stored) : null;
     } catch (e) {
-      console.warn('GameStorage.load failed', e);
+      console.warn('GameStorage.load failed.', e);
 
       return null;
     }
@@ -35,7 +33,7 @@ export const GameStorage = {
     try {
       localStorage.removeItem(KEY);
     } catch (e) {
-      console.warn('GameStorage.reset failed', e);
+      console.warn('GameStorage.reset failed.', e);
     }
   },
 };
