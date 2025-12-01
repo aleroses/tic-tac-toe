@@ -37,8 +37,7 @@ export const gameReducer = (state = {}, action) => {
         player1,
         player2,
         turn,
-        // board: state.board,
-        // board: createEmptyBoard(state.size),
+        board: createEmptyBoard(state.size),
         // winner: null,
       };
     }
