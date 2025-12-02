@@ -6,7 +6,7 @@ export const checkWinner = (boardNames, size) => {
   for (const combo of wins) {
     const first = boardNames[combo[0]];
 
-    // si la primera posición es null, no puede ganar esa línea
+    // If the first position is null, that line cannot win.
     if (!first) continue;
 
     let allEqual = true;

@@ -15,7 +15,7 @@ export const GameStorage = {
 
       localStorage.setItem(KEY, JSON.stringify(data));
     } catch (e) {
-      // podrías reportar este error a un logger si tienes
+      // You could report this error to a logger if you have one.
       console.warn('GameStorage.save failed.', e);
     }
   },

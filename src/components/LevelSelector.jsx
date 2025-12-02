@@ -2,12 +2,10 @@ export const LevelSelector = ({
   level,
   boxes,
   handleSize,
-  // resetGame,
   active,
 }) => {
   const handleClick = () => {
     handleSize(boxes);
-    // resetGame();
   };
 
   return (
