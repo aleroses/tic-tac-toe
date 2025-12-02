@@ -1,24 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { CHARACTERS } from '../constants';
 
 export const CharacterSelector = ({
   label,
-  current,
   setPlayer,
   excludeOpponent,
 }) => {
-  const initialIndex = Math.max(
-    0,
-    CHARACTERS.findIndex((c) => c.name === current)
-  );
-  const [index, setIndex] = useState(initialIndex === -1 ? 0 : initialIndex);
-
-  useEffect(() => {
-    // si el current cambia desde fuera, sincronizamos
-    const idx = CHARACTERS.findIndex((c) => c.name === current);
-
-    if (idx >= 0 && idx !== index) setIndex(idx);
-  }, [current]);
+  const [index, setIndex] = useState(0);
 
   const characterLength = CHARACTERS.length;
   const currentCharacter = CHARACTERS[index];
@@ -27,16 +15,11 @@ export const CharacterSelector = ({
   const nextCharacter = () => {
     let next = (index + 1) % characterLength;
 
-    // Evita repetir personaje que ya eligió el otro jugador
+    // Avoid repeating the character already chosen by the other player
     // excludeOpponent = jugador 2 / 1
 
-    let loops = 0;
-    while (
-      CHARACTERS[next].name === excludeOpponent &&
-      loops < characterLength
-    ) {
+    while (CHARACTERS[next].name === excludeOpponent) {
       next = (next + 1) % characterLength;
-      loops++;
     }
 
     setIndex(next);
@@ -50,7 +33,10 @@ export const CharacterSelector = ({
       onClick={nextCharacter}
     >
       <div className='character-current'>
-        <img src={currentCharacter.src} alt={currentCharacter.name} />
+        <img
+          src={currentCharacter.src}
+          alt={currentCharacter.name}
+        />
       </div>
 
       <div className='character-next'>
@@ -63,41 +49,3 @@ export const CharacterSelector = ({
     </div>
   );
 };
-
-/* import { useState } from 'react';
-import { CHARACTERS } from '../constants';
-
-export const CharacterSelector = ({ label, setPlayer, excludeOpponent }) => {
-  const [index, setIndex] = useState(0);
-
-  const characterLength = CHARACTERS.length;
-  const currentCharacter = CHARACTERS[index];
-  const next = CHARACTERS[(index + 1) % characterLength];
-
-  const nextCharacter = () => {
-    let next = (index + 1) % characterLength;
-
-    while (CHARACTERS[next].name === excludeOpponent) {
-      next = (next + 1) % characterLength;
-    }
-
-    setIndex(next);
-    setPlayer(CHARACTERS[next].name);
-  };
-
-  return (
-    <div className='character-selector' onClick={nextCharacter}>
-      <div className='character-current'>
-        <img src={currentCharacter.src} alt={currentCharacter.name} />
-      </div>
-
-      <div className='character-next'>
-        <img src={next.src} alt={next.name} />
-      </div>
-
-      <p className='label'>
-        {label}: {currentCharacter.name}
-      </p>
-    </div>
-  );
-}; */

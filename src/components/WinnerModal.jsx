@@ -1,10 +1,6 @@
 import { CHARACTERS } from '../constants';
 
-export const WinnerModal = ({
-  winner,
-  resetGame,
-  // dispatch,
-}) => {
+export const WinnerModal = ({ winner, resetGame }) => {
   if (winner === null) return null;
 
   const winnerCharacter =
@@ -15,10 +11,6 @@ export const WinnerModal = ({
     : 'It’s a tie!';
 
   const handleClick = () => {
-    // reset UI + state
-    // dispatch({ type: 'RESET' });
-
-    // if (typeof resetGame === 'function') resetGame();
     resetGame();
   };
 
@@ -32,19 +24,18 @@ export const WinnerModal = ({
       <div className='text'>
         <h2>{winnerText}</h2>
 
-        <header
-          className='win'
-          aria-hidden={!winnerCharacter}
-        >
-          {/* {winner && <Square>{winner}</Square>} */}
-          {winnerCharacter && (
+        {winnerCharacter && (
+          <header
+            className='win'
+            aria-hidden={!winnerCharacter}
+          >
             <img
               src={winnerCharacter.src}
               alt={winnerCharacter.name}
               className='winner-icon'
             />
-          )}
-        </header>
+          </header>
+        )}
 
         <footer className='modal-reset'>
           <button onClick={handleClick} autoFocus>

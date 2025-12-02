@@ -1,11 +1,10 @@
 import { CHARACTERS } from '../constants';
 
-export const Square = ({
-  handlePlay,
-  index,
-  square,
-  disabled,
-}) => {
+export const Square = ({ handlePlay, index, square }) => {
+  const handleClick = () => {
+    handlePlay(index);
+  };
+
   const character = CHARACTERS.find((c) => c.name === square);
 
   return (
@@ -14,8 +13,7 @@ export const Square = ({
       aria-label={`Square ${index + 1} ${
         character ? `occupied by ${character.name}` : 'empty'
       }`}
-      disabled={disabled || !!character}
-      onClick={() => handlePlay(index)}
+      onClick={handleClick}
     >
       {character ? (
         <img

@@ -1,3 +1,5 @@
+import { createEmptyBoard } from './board';
+
 const KEY = 'tic-tac-toe-state';
 
 export const GameStorage = {
@@ -6,8 +8,9 @@ export const GameStorage = {
       const { size, player1, player2 } = state;
       const data = {
         size,
-        player1,
-        player2,
+        // player1,
+        // player2,
+        board: createEmptyBoard(size),
       };
 
       localStorage.setItem(KEY, JSON.stringify(data));
