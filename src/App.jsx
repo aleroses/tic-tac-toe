@@ -12,6 +12,7 @@ import { checkWinner } from './logic/checkWinner';
 import { LEVELS } from './constants';
 import confetti from 'canvas-confetti';
 
+import { getComputerMove } from './logic/ai';
 import logo from './assets/logo.png';
 
 function App() {
@@ -69,6 +70,41 @@ function App() {
     });
   };
 
+  useEffect(() => {
+    // Si no hay turno, o no hay player2, o ya hay ganador -> nada
+    if (!turn || !player2 || winner) return;
+
+    // Solo actuamos cuando el turno pertenece a la computadora
+    if (player2 === 'Computer' && turn === 'Computer') {
+      // evita que la IA juegue si el tablero está completo
+      const move = getComputerMove(
+        board,
+        size,
+        state.aiLevel,
+        'Computer',
+        player1
+      );
+
+      if (move == null) return;
+
+      // simular un "pensamiento" corto (opcional)
+      const timer = setTimeout(() => {
+        // llamar a la misma función que usaría un humano
+        handlePlay(move);
+      }, 350);
+
+      return () => clearTimeout(timer);
+    }
+  }, [
+    turn,
+    player2,
+    board,
+    winner,
+    size,
+    state.aiLevel,
+    player1,
+  ]);
+
   const resetGame = () => {
     dispatch({ type: 'RESET' });
   };
@@ -119,14 +155,51 @@ function App() {
           excludeOpponent={player2}
         />
 
-        <button
-          className='reset'
-          onClick={resetGame}
-          aria-label='Reset the game'
-          title='Reset the game'
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 8,
+          }}
         >
-          Reset of the game
-        </button>
+          <button
+            className='reset'
+            onClick={resetGame}
+            aria-label='Reset the game'
+            title='Reset the game'
+          >
+            Reset
+          </button>
+
+          {/* Botón para jugar contra la computadora */}
+          <button
+            onClick={() =>
+              // ponemos player2 a 'Computer' (nombre que usará la IA)
+              setPlayer('player2', 'Computer')
+            }
+            title='Play vs Computer'
+          >
+            Play vs Computer
+          </button>
+
+          {/* Selector de dificultad */}
+          <label>
+            Difficulty:
+            <select
+              value={state.aiLevel}
+              onChange={(e) =>
+                dispatch({
+                  type: 'SET_AI_LEVEL',
+                  payload: e.target.value,
+                })
+              }
+            >
+              <option value='easy'>Easy</option>
+              <option value='medium'>Medium</option>
+              <option value='hard'>Hard</option>
+            </select>
+          </label>
+        </div>
 
         <CharacterSelector
           label='Player 2'

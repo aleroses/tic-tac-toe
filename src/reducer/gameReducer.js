@@ -7,6 +7,7 @@ export const initialGameState = {
   player2: null,
   turn: null, // name of the current player
   winner: null, // winner name or false for tie
+  aiLevel: 'hard', // new: 'easy' | 'medium' | 'hard' (by default 'hard')
 };
 
 export const gameReducer = (state = {}, action) => {
@@ -56,6 +57,13 @@ export const gameReducer = (state = {}, action) => {
         // turn: state.player1 ?? null,
         // turn: null,
       };
+
+    case 'SET_AI_LEVEL': {
+      return {
+        ...state,
+        aiLevel: action.payload,
+      };
+    }
 
     default:
       return state;
