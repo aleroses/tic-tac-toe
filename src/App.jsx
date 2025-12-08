@@ -14,6 +14,7 @@ import confetti from 'canvas-confetti';
 
 import { getComputerMove } from './logic/ai';
 import logo from './assets/logo.png';
+import { MachineSelector } from './components/MachineSelector';
 
 function App() {
   const { state, dispatch } = useContext(GameContext);
@@ -155,58 +156,24 @@ function App() {
           excludeOpponent={player2}
         />
 
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 8,
-          }}
-        >
-          <button
-            className='reset'
-            onClick={resetGame}
-            aria-label='Reset the game'
-            title='Reset the game'
-          >
-            Reset
-          </button>
-
-          {/* Botón para jugar contra la computadora */}
-          <button
-            onClick={() =>
-              // ponemos player2 a 'Computer' (nombre que usará la IA)
-              setPlayer('player2', 'Computer')
-            }
-            title='Play vs Computer'
-          >
-            Play vs Computer
-          </button>
-
-          {/* Selector de dificultad */}
-          <label>
-            Difficulty:
-            <select
-              value={state.aiLevel}
-              onChange={(e) =>
-                dispatch({
-                  type: 'SET_AI_LEVEL',
-                  payload: e.target.value,
-                })
-              }
-            >
-              <option value='easy'>Easy</option>
-              <option value='medium'>Medium</option>
-              <option value='hard'>Hard</option>
-            </select>
-          </label>
-        </div>
-
+        {/* <div className='options-container'> */}
+        <MachineSelector />
+        {/* </div> */}
         <CharacterSelector
           label='Player 2'
           setPlayer={(name) => setPlayer('player2', name)}
           excludeOpponent={player1}
         />
       </section>
+
+      <button
+        className='reset'
+        onClick={resetGame}
+        aria-label='Reset the game'
+        title='Reset the game'
+      >
+        Reset of the Game
+      </button>
 
       <WinnerModal winner={winner} resetGame={resetGame} />
     </main>

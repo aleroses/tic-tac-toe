@@ -7,7 +7,8 @@ export const initialGameState = {
   player2: null,
   turn: null, // name of the current player
   winner: null, // winner name or false for tie
-  aiLevel: 'hard', // new: 'easy' | 'medium' | 'hard' (by default 'hard')
+  machineMode: false,
+  machineLevel: 'easy', // 'easy' | 'medium' | 'hard'
 };
 
 export const gameReducer = (state = {}, action) => {
