@@ -44,7 +44,8 @@ export const CharacterSelector = ({
       </div>
 
       <p className='label'>
-        {label}: {currentCharacter.name}
+        {/* {label}:  */}
+        {currentCharacter.name}
       </p>
     </div>
   );

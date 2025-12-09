@@ -1,4 +1,4 @@
-options* {
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -59,10 +59,11 @@ body {
 /* ********** Container > Board ********** */
 
 .board {
-  width: 96%;
-  margin: 1rem 0;
+  width: 100%;
+  /* margin: 1rem 0; */
 
   text-align: center;
+  /* background-color: var(--first-color); */
 }
 
 /* ********** Logo: Tic Tac Toe ********** */
@@ -178,7 +179,7 @@ body {
 
 .board .characters {
   /* width: auto; */
-  height: 8rem;
+  /* height: 8rem; */
   margin: 1rem 0.5rem;
   /* margin: 1rem 0.5rem 0.5rem; */
 
@@ -241,6 +242,7 @@ body {
 
 .label {
   margin-top: 80px;
+  padding: 0.2rem 0.4rem;
 
   color: #fff;
   text-shadow: 1px 1px 2px #000;
@@ -264,9 +266,9 @@ body {
 } */
 
 .characters .machine-options {
-  height: 5rem;
+  /* height: 5rem; */
   padding: 0.5rem;
-  
+
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -305,7 +307,7 @@ body {
 }
 
 .board .reset {
-  width: 100%;
+  width: 94%;
   /* width: fit-content;
   height: fit-content; */
   margin: 0rem 0.5rem;
