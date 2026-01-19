@@ -64,8 +64,8 @@ function App() {
           newWinner || draw
             ? null
             : turn === player1
-            ? player2
-            : player1,
+              ? player2
+              : player1,
         winner: newWinner ? turn : draw ? false : null,
       },
     });
@@ -112,11 +112,14 @@ function App() {
 
   return (
     <main className='board' aria-live='polite'>
-      <img
-        className='logo'
-        src={logo}
-        alt='Tic Tac Toe Logo'
-      />
+      <div className='logo-wrapper'>
+        <img
+          className='logo'
+          src={logo}
+          alt='Tic Tac Toe Logo'
+          loading='eager'
+        />
+      </div>
 
       <section
         className='levels'

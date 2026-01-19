@@ -11,7 +11,8 @@ body {
   justify-content: center;
   align-items: center;
 
-  background: radial-gradient(
+  background:
+    radial-gradient(
       circle at 10% 20%,
       var(--light-blue-color) 0%,
       transparent 20%
@@ -45,7 +46,7 @@ body {
 
   width: min(90vw, 286px);
   height: auto;
-  margin: 0 0 2rem;
+  margin: 2rem 0;
 
   display: flex;
   justify-content: center;
@@ -68,8 +69,18 @@ body {
 
 /* ********** Logo: Tic Tac Toe ********** */
 
-.board .logo {
+.logo-wrapper {
   width: 100%;
+  aspect-ratio: 2/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.board .logo-wrapper .logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ********** Levels ********** */
@@ -83,15 +94,20 @@ body {
 }
 
 .board .levels .level {
-  padding: 0.25rem 0.5rem;
+  padding: 0.4rem 0.8rem;
 
+  border: none;
   border-radius: 2rem;
-  border: 2px solid var(--fourth-color);
+  /* border: 2px solid var(--fourth-color); */
 
   cursor: pointer;
   transition: all 0.2s ease;
   font-weight: bold;
   user-select: none;
+
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2rem);
+  -webkit-backdrop-filter: blur(2rem);
 }
 
 .board .levels .level:hover {
@@ -102,11 +118,12 @@ body {
 
 .levels .level.active-level {
   color: var(--fourth-color);
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 
-  border: 2px solid var(--fourth-color);
+  border: 1px solid var(--second-color);
+  /* border-color: var(--first-color); */
 
   transform: scale(1.1);
 }
@@ -151,7 +168,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  border: 2px solid #eee;
+  border: 2px solid var(--fourth-color);
   border-radius: 0.3rem;
 
   background: rgba(0, 0, 0, 0.1);
@@ -209,7 +226,9 @@ body {
   width: 100%;
   height: 100%;
 
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .character-current img,
@@ -411,13 +430,19 @@ body {
 
 @keyframes waveBackground {
   0% {
-    background-position: 0 0, 0 0;
+    background-position:
+      0 0,
+      0 0;
   }
   50% {
-    background-position: 100% 100%, 50% 50%;
+    background-position:
+      100% 100%,
+      50% 50%;
   }
   100% {
-    background-position: 0 0, 0 0;
+    background-position:
+      0 0,
+      0 0;
   }
 }
 
