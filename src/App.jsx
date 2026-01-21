@@ -1,6 +1,8 @@
 import { useContext, useEffect } from 'react';
 import { GameContext } from './context/GameContext';
 
+import { GameModeModal } from './components/GameModeModal';
+
 import { LevelSelector } from './components/LevelSelector';
 import { Square } from './components/Square';
 import { CharacterSelector } from './components/CharacterSelector';
@@ -12,15 +14,67 @@ import { checkWinner } from './logic/checkWinner';
 import { LEVELS } from './constants';
 import confetti from 'canvas-confetti';
 
-import { getComputerMove } from './logic/ai';
+import {
+  getComputerMove,
+  getRandomCharacter,
+} from './logic/ai';
 import logo from './assets/logo.png';
 import { MachineSelector } from './components/MachineSelector';
 
 function App() {
   const { state, dispatch } = useContext(GameContext);
-  const { size, board, player1, player2, turn, winner } =
-    state;
+  const {
+    size,
+    board,
+    player1,
+    player2,
+    turn,
+    winner,
+    // mode,
+    showGameModeModal,
+    aiLevel,
+    gameMode,
+  } = state;
 
+  // console.log(mode);
+
+  // 🔹 IA EFFECT (siempre se declara)
+  useEffect(() => {
+    if (
+      gameMode !== 'PVC' ||
+      turn !== player2 ||
+      winner ||
+      !player2
+    )
+      return;
+
+    const move = getComputerMove(
+      board,
+      size,
+      aiLevel,
+      player2,
+      player1
+    );
+
+    if (move == null) return;
+
+    const timer = setTimeout(() => {
+      handlePlay(move);
+    }, 350);
+
+    return () => clearTimeout(timer);
+  }, [
+    turn,
+    board,
+    winner,
+    gameMode,
+    aiLevel,
+    size,
+    player1,
+    player2,
+  ]);
+
+  // 🔹 Confetti EFFECT (siempre se declara)
   useEffect(() => {
     if (winner && winner !== false) {
       confetti({
@@ -31,6 +85,11 @@ function App() {
     }
   }, [winner]);
 
+  // 🔹 AHORA sí, render condicional
+  if (showGameModeModal) {
+    return <GameModeModal />;
+  }
+
   const handleSize = (boxes) => {
     dispatch({
       type: 'SET_SIZE',
@@ -38,14 +97,42 @@ function App() {
     });
   };
 
-  const setPlayer = (player, name) => {
-    dispatch({
-      type: 'SET_PLAYERS',
-      payload: {
-        ...state,
-        [player]: name,
-      },
-    });
+  const setPlayer = (playerKey, name) => {
+    // 🟢 Player 1 elige
+    if (playerKey === 'player1') {
+      if (gameMode === 'PVC') {
+        const computerCharacter = getRandomCharacter(name);
+
+        dispatch({
+          type: 'SET_PLAYERS',
+          payload: {
+            player1: name,
+            player2: computerCharacter,
+          },
+        });
+        return;
+      }
+
+      dispatch({
+        type: 'SET_PLAYERS',
+        payload: {
+          ...state,
+          player1: name,
+        },
+      });
+      return;
+    }
+
+    // 🟢 Player 2 SOLO si es PVP
+    if (playerKey === 'player2' && gameMode === 'PVP') {
+      dispatch({
+        type: 'SET_PLAYERS',
+        payload: {
+          ...state,
+          player2: name,
+        },
+      });
+    }
   };
 
   const handlePlay = (index) => {
@@ -70,41 +157,6 @@ function App() {
       },
     });
   };
-
-  useEffect(() => {
-    // Si no hay turno, o no hay player2, o ya hay ganador -> nada
-    if (!turn || !player2 || winner) return;
-
-    // Solo actuamos cuando el turno pertenece a la computadora
-    if (player2 === 'Computer' && turn === 'Computer') {
-      // evita que la IA juegue si el tablero está completo
-      const move = getComputerMove(
-        board,
-        size,
-        state.aiLevel,
-        'Computer',
-        player1
-      );
-
-      if (move == null) return;
-
-      // simular un "pensamiento" corto (opcional)
-      const timer = setTimeout(() => {
-        // llamar a la misma función que usaría un humano
-        handlePlay(move);
-      }, 350);
-
-      return () => clearTimeout(timer);
-    }
-  }, [
-    turn,
-    player2,
-    board,
-    winner,
-    size,
-    state.aiLevel,
-    player1,
-  ]);
 
   const resetGame = () => {
     dispatch({ type: 'RESET' });
@@ -160,23 +212,24 @@ function App() {
         />
 
         {/* <div className='options-container'> */}
-        <MachineSelector />
+        {/* <MachineSelector /> */}
+
+        <button
+          className='reset'
+          onClick={resetGame}
+          aria-label='Reset the game'
+          title='Reset the game'
+        >
+          Reset of the Game
+        </button>
         {/* </div> */}
         <CharacterSelector
           label='Player 2'
           setPlayer={(name) => setPlayer('player2', name)}
           excludeOpponent={player1}
+          disabled={gameMode === 'PVC'}
         />
       </section>
-
-      <button
-        className='reset'
-        onClick={resetGame}
-        aria-label='Reset the game'
-        title='Reset the game'
-      >
-        Reset of the Game
-      </button>
 
       <WinnerModal winner={winner} resetGame={resetGame} />
     </main>

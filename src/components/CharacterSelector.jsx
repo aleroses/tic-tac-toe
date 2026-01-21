@@ -5,6 +5,7 @@ export const CharacterSelector = ({
   label,
   setPlayer,
   excludeOpponent,
+  disabled = false,
 }) => {
   const [index, setIndex] = useState(0);
 
@@ -13,6 +14,8 @@ export const CharacterSelector = ({
   const next = CHARACTERS[(index + 1) % characterLength];
 
   const nextCharacter = () => {
+    if (disabled) return;
+
     let next = (index + 1) % characterLength;
 
     // Avoid repeating the character already chosen by the other player
@@ -28,8 +31,9 @@ export const CharacterSelector = ({
 
   return (
     <div
-      className='character-selector'
+      // className='character-selector'
       aria-label={label}
+      className={`character-selector ${disabled ? 'disabled' : ''}`}
       onClick={nextCharacter}
     >
       <div className='character-current'>
@@ -44,7 +48,7 @@ export const CharacterSelector = ({
       </div>
 
       <p className='label'>
-        {/* {label}:  */}
+        {/* {label} :  */}
         {currentCharacter.name}
       </p>
     </div>

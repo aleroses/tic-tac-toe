@@ -3,16 +3,41 @@ import { createEmptyBoard } from '../logic/board';
 export const initialGameState = {
   size: 3,
   board: createEmptyBoard(3),
+
   player1: null,
   player2: null,
   turn: null, // name of the current player
   winner: null, // winner name or false for tie
-  machineMode: false,
-  machineLevel: 'easy', // 'easy' | 'medium' | 'hard'
+
+  gameMode: null, // 'PVP (Play vs Player)' | 'PVC' (Computer)
+  aiLevel: 'easy', // 'easy' | 'medium' | 'hard'
+  showGameModeModal: true,
 };
 
 export const gameReducer = (state = {}, action) => {
   switch (action.type) {
+    case 'SET_GAME_MODE': {
+      const { mode, aiLevel, computerCharacter } =
+        action.payload;
+
+      return {
+        ...state,
+        gameMode: mode,
+        aiLevel: aiLevel ?? state.aiLevel,
+        showGameModeModal: false,
+
+        // player1: state.player1 ?? 'Player 1',
+        player1: null,
+        // player2: mode === 'PVC' ? 'Computer' : 'Player 2',
+        player2: null,
+
+        // turn: state.player1 ?? 'Player 1',
+        turn: null,
+        board: createEmptyBoard(state.size),
+        winner: null,
+      };
+    }
+
     case 'SET_SIZE': {
       const size = action.payload;
 
@@ -35,7 +60,7 @@ export const gameReducer = (state = {}, action) => {
         player2,
         turn,
         board: createEmptyBoard(state.size),
-        // winner: null,
+        winner: null,
       };
     }
 
@@ -63,6 +88,17 @@ export const gameReducer = (state = {}, action) => {
       return {
         ...state,
         aiLevel: action.payload,
+      };
+    }
+
+    case 'RESET_TO_MODE_SELECTOR': {
+      return {
+        ...state,
+        showGameModeModal: true,
+        gameMode: null,
+        winner: null,
+        turn: null,
+        board: createEmptyBoard(state.size),
       };
     }
 

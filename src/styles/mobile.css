@@ -226,6 +226,8 @@ body {
   width: 100%;
   height: 100%;
 
+  top: -16px;
+
   transition:
     transform 0.3s ease,
     opacity 0.3s ease;
@@ -260,20 +262,25 @@ body {
 }
 
 .label {
-  margin-top: 80px;
-  padding: 0.2rem 0.4rem;
+  width: 4rem;
+  margin-top: 60px;
+  /* padding: 0.2rem 0.4rem; */
 
-  color: #fff;
-  text-shadow: 1px 1px 2px #000;
+  color: var(--fourth-color);
+  /* text-shadow: 1px 1px 2px #000; */
 
   /* font-family: 'DynaPuff_SemiCondensed-Bold', sans-serif; */
   font-size: 0.875em;
   text-align: center;
-  border-radius: 0.2rem;
+  border-radius: 0.6rem;
 
-  background: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(1rem);
-  -webkit-backdrop-filter: blur(1rem);
+  /* 
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(2rem);
+  -webkit-backdrop-filter: blur(2rem); */
+
+  /* background: rgba(0, 0, 0, 0.9); */
+  font-weight: 600;
 }
 
 /* ********** Character Options ********** */
@@ -326,16 +333,24 @@ body {
 }
 
 .board .reset {
-  width: 94%;
+  width: 8rem;
+  /* width: 120px; */
   /* width: fit-content;
   height: fit-content; */
   margin: 0rem 0.5rem;
-  padding: 8px 12px;
+  /* padding: 0 1.4rem; */
+
+  text-wrap: balance;
 
   border-radius: 6px;
-  border: 2px solid var(--fourth-color);
+  /* border: 2px solid var(--fourth-color); */
+  border: none;
   color: var(--fourth-color);
-  background: transparent;
+  /* background: transparent; */
+
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2rem);
+  -webkit-backdrop-filter: blur(2rem);
 
   transition: 2s;
   font-weight: bold;

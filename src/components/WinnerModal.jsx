@@ -1,6 +1,10 @@
+import { useContext } from 'react';
+import { GameContext } from '../context/GameContext';
 import { CHARACTERS } from '../constants';
 
 export const WinnerModal = ({ winner, resetGame }) => {
+  const { dispatch } = useContext(GameContext);
+
   if (winner === null) return null;
 
   const winnerCharacter =
@@ -37,9 +41,23 @@ export const WinnerModal = ({ winner, resetGame }) => {
           </header>
         )}
 
-        <footer className='modal-reset'>
+        {/* <footer className='modal-reset'>
           <button onClick={handleClick} autoFocus>
             Start over!!!
+          </button>
+        </footer> */}
+
+        <footer className='modal-reset'>
+          <button onClick={() => dispatch({ type: 'RESET' })}>
+            Play again
+          </button>
+
+          <button
+            onClick={() =>
+              dispatch({ type: 'RESET_TO_MODE_SELECTOR' })
+            }
+          >
+            Change game mode
           </button>
         </footer>
       </div>
