@@ -1,6 +1,6 @@
 * {
-  padding: 0;
-  margin: 0;
+  /* padding: 0;
+  margin: 0; */
   box-sizing: border-box;
 }
 
@@ -17,21 +17,9 @@ body {
       var(--light-blue-color) 0%,
       transparent 20%
     ),
-    radial-gradient(
-      circle at 90% 80%,
-      var(--red-color) 0%,
-      transparent 20%
-    ),
-    radial-gradient(
-      circle at 50% 50%,
-      var(--yellow-color) 0%,
-      transparent 20%
-    ),
-    radial-gradient(
-      circle at 80% 30%,
-      var(--green-color) 0%,
-      transparent 20%
-    );
+    radial-gradient(circle at 90% 80%, var(--red-color) 0%, transparent 20%),
+    radial-gradient(circle at 50% 50%, var(--yellow-color) 0%, transparent 20%),
+    radial-gradient(circle at 80% 30%, var(--green-color) 0%, transparent 20%);
 
   background-repeat: no-repeat;
   background-size: 200% 200%;
@@ -44,7 +32,8 @@ body {
   /* width: 300px;
   height: 520px; */
 
-  width: min(90vw, 286px);
+  width: min(90vw, 20rem);
+  /* height: min(90vw, 20rem); */
   height: auto;
   margin: 2rem 0;
 

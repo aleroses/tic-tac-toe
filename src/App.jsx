@@ -1,25 +1,23 @@
-import { useContext, useEffect } from 'react';
-import { GameContext } from './context/GameContext';
+import { useContext, useEffect } from "react";
+import { GameContext } from "./context/GameContext";
 
-import { GameModeModal } from './components/GameModeModal';
+import { GameModeModal } from "./components/GameModeModal";
 
-import { LevelSelector } from './components/LevelSelector';
-import { Square } from './components/Square';
-import { CharacterSelector } from './components/CharacterSelector';
-import { WinnerModal } from './components/WinnerModal';
+import { LevelSelector } from "./components/LevelSelector";
+import { Square } from "./components/Square";
+import { CharacterSelector } from "./components/CharacterSelector";
+import { WinnerModal } from "./components/WinnerModal";
 
-import { isDraw, updateBoard } from './logic/board';
-import { checkWinner } from './logic/checkWinner';
+import { isDraw, updateBoard } from "./logic/board";
+import { checkWinner } from "./logic/checkWinner";
 
-import { LEVELS } from './constants';
-import confetti from 'canvas-confetti';
+import { LEVELS } from "./constants";
+import confetti from "canvas-confetti";
 
-import {
-  getComputerMove,
-  getRandomCharacter,
-} from './logic/ai';
-import logo from './assets/logo.png';
-import { MachineSelector } from './components/MachineSelector';
+import { getComputerMove, getRandomCharacter } from "./logic/ai";
+import { Logo } from "./components/Logo";
+import logo from "./assets/logo.png";
+import { MachineSelector } from "./components/MachineSelector";
 
 function App() {
   const { state, dispatch } = useContext(GameContext);
@@ -40,21 +38,9 @@ function App() {
 
   // 🔹 IA EFFECT (siempre se declara)
   useEffect(() => {
-    if (
-      gameMode !== 'PVC' ||
-      turn !== player2 ||
-      winner ||
-      !player2
-    )
-      return;
+    if (gameMode !== "PVC" || turn !== player2 || winner || !player2) return;
 
-    const move = getComputerMove(
-      board,
-      size,
-      aiLevel,
-      player2,
-      player1
-    );
+    const move = getComputerMove(board, size, aiLevel, player2, player1);
 
     if (move == null) return;
 
@@ -63,16 +49,7 @@ function App() {
     }, 350);
 
     return () => clearTimeout(timer);
-  }, [
-    turn,
-    board,
-    winner,
-    gameMode,
-    aiLevel,
-    size,
-    player1,
-    player2,
-  ]);
+  }, [turn, board, winner, gameMode, aiLevel, size, player1, player2]);
 
   // 🔹 Confetti EFFECT (siempre se declara)
   useEffect(() => {
@@ -92,19 +69,19 @@ function App() {
 
   const handleSize = (boxes) => {
     dispatch({
-      type: 'SET_SIZE',
+      type: "SET_SIZE",
       payload: boxes,
     });
   };
 
   const setPlayer = (playerKey, name) => {
     // 🟢 Player 1 elige
-    if (playerKey === 'player1') {
-      if (gameMode === 'PVC') {
+    if (playerKey === "player1") {
+      if (gameMode === "PVC") {
         const computerCharacter = getRandomCharacter(name);
 
         dispatch({
-          type: 'SET_PLAYERS',
+          type: "SET_PLAYERS",
           payload: {
             player1: name,
             player2: computerCharacter,
@@ -114,7 +91,7 @@ function App() {
       }
 
       dispatch({
-        type: 'SET_PLAYERS',
+        type: "SET_PLAYERS",
         payload: {
           ...state,
           player1: name,
@@ -124,9 +101,9 @@ function App() {
     }
 
     // 🟢 Player 2 SOLO si es PVP
-    if (playerKey === 'player2' && gameMode === 'PVP') {
+    if (playerKey === "player2" && gameMode === "PVP") {
       dispatch({
-        type: 'SET_PLAYERS',
+        type: "SET_PLAYERS",
         payload: {
           ...state,
           player2: name,
@@ -144,40 +121,32 @@ function App() {
     const draw = !newWinner && isDraw(newBoard);
 
     dispatch({
-      type: 'PLAY',
+      type: "PLAY",
       payload: {
         board: newBoard,
-        turn:
-          newWinner || draw
-            ? null
-            : turn === player1
-              ? player2
-              : player1,
+        turn: newWinner || draw ? null : turn === player1 ? player2 : player1,
         winner: newWinner ? turn : draw ? false : null,
       },
     });
   };
 
   const resetGame = () => {
-    dispatch({ type: 'RESET' });
+    dispatch({ type: "RESET" });
   };
 
   return (
-    <main className='board' aria-live='polite'>
-      <div className='logo-wrapper'>
+    <main className="board" aria-live="polite">
+      {/* <div className='logo-wrapper'>
         <img
           className='logo'
           src={logo}
           alt='Tic Tac Toe Logo'
           loading='eager'
         />
-      </div>
+      </div> */}
+      <Logo />
 
-      <section
-        className='levels'
-        role='tablist'
-        aria-label='Game difficulty'
-      >
+      <section className="levels" role="tablist" aria-label="Game difficulty">
         {LEVELS.map((item, index) => (
           <LevelSelector
             key={index}
@@ -204,10 +173,10 @@ function App() {
         ))}
       </section>
 
-      <section className='characters' aria-label='Players'>
+      <section className="characters" aria-label="Players">
         <CharacterSelector
-          label='Player 1'
-          setPlayer={(name) => setPlayer('player1', name)}
+          label="Player 1"
+          setPlayer={(name) => setPlayer("player1", name)}
           excludeOpponent={player2}
         />
 
@@ -215,19 +184,19 @@ function App() {
         {/* <MachineSelector /> */}
 
         <button
-          className='reset'
+          className="reset"
           onClick={resetGame}
-          aria-label='Reset the game'
-          title='Reset the game'
+          aria-label="Reset the game"
+          title="Reset the game"
         >
           Reset of the Game
         </button>
         {/* </div> */}
         <CharacterSelector
-          label='Player 2'
-          setPlayer={(name) => setPlayer('player2', name)}
+          label="Player 2"
+          setPlayer={(name) => setPlayer("player2", name)}
           excludeOpponent={player1}
-          disabled={gameMode === 'PVC'}
+          disabled={gameMode === "PVC"}
         />
       </section>
 
