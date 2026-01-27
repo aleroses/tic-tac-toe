@@ -1,18 +1,15 @@
-import { useContext } from 'react';
-import { GameContext } from '../context/GameContext';
-import { CHARACTERS } from '../constants';
+import { useContext } from "react";
+import { GameContext } from "../context/GameContext";
+import { CHARACTERS } from "../constants";
 
 export const WinnerModal = ({ winner, resetGame }) => {
   const { dispatch } = useContext(GameContext);
 
   if (winner === null) return null;
 
-  const winnerCharacter =
-    winner && CHARACTERS.find((c) => c.name === winner);
+  const winnerCharacter = winner && CHARACTERS.find((c) => c.name === winner);
 
-  const winnerText = winner
-    ? `${winner} won!`
-    : 'It’s a tie!';
+  const winnerText = winner ? `${winner} won!` : "It’s a tie!";
 
   const handleClick = () => {
     resetGame();
@@ -20,23 +17,20 @@ export const WinnerModal = ({ winner, resetGame }) => {
 
   return (
     <section
-      className='winner'
-      role='dialog'
-      aria-modal='true'
-      aria-label='Game result'
+      className="winner"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Game result"
     >
-      <div className='text'>
+      <div className="text">
         <h2>{winnerText}</h2>
 
         {winnerCharacter && (
-          <header
-            className='win'
-            aria-hidden={!winnerCharacter}
-          >
+          <header className="win" aria-hidden={!winnerCharacter}>
             <img
               src={winnerCharacter.src}
               alt={winnerCharacter.name}
-              className='winner-icon'
+              className="winner-icon"
             />
           </header>
         )}
@@ -47,15 +41,17 @@ export const WinnerModal = ({ winner, resetGame }) => {
           </button>
         </footer> */}
 
-        <footer className='modal-reset'>
-          <button onClick={() => dispatch({ type: 'RESET' })}>
+        <footer className="modal-reset">
+          <button
+            className="cursor-pointer rounded-2xl border border-white/20 bg-black/40 px-4 py-2 text-[0.8rem] text-white backdrop-blur-2xl transition hover:bg-black/60"
+            onClick={() => dispatch({ type: "RESET" })}
+          >
             Play again
           </button>
 
           <button
-            onClick={() =>
-              dispatch({ type: 'RESET_TO_MODE_SELECTOR' })
-            }
+            className="cursor-pointer rounded-2xl border border-white/20 bg-black/40 px-4 py-2 text-[0.8rem] text-white backdrop-blur-2xl transition hover:bg-black/60"
+            onClick={() => dispatch({ type: "RESET_TO_MODE_SELECTOR" })}
           >
             Change game mode
           </button>

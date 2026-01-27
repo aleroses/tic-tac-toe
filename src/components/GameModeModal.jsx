@@ -31,7 +31,7 @@ export const GameModeModal = () => {
 
   return (
     <>
-      <section>
+      <section className="mb-16 flex flex-col gap-4">
         <Logo />
         <div
           className="animate-rotate-border w-full max-w-lg rounded-2xl bg-conic/[from_var(--border-angle)] from-[#42b132] via-[#009cda] to-[#fcd000] p-[0.1rem]"

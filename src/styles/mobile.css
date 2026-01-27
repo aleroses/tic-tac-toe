@@ -91,6 +91,8 @@ body {
 
   cursor: pointer;
   transition: all 0.2s ease;
+
+  font-size: 0.8rem;
   font-weight: bold;
   user-select: none;
 
@@ -329,6 +331,7 @@ body {
   margin: 0rem 0.5rem;
   /* padding: 0 1.4rem; */
 
+  font-size: 0.9rem;
   text-wrap: balance;
 
   border-radius: 6px;
@@ -383,6 +386,7 @@ body {
   -webkit-backdrop-filter: blur(1rem);
 
   gap: 1.25rem;
+  margin-top: 1.5rem;
 }
 
 .winner .win {
@@ -403,7 +407,12 @@ body {
   animation: bounce 0.8s ease infinite alternate;
 }
 
-.modal-reset button {
+.modal-reset {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+/* .modal-reset button {
   padding: 0.5rem 0.75rem;
 
   border-radius: 0.5rem;
@@ -416,7 +425,7 @@ body {
   cursor: pointer;
 
   background-color: var(--second-color);
-}
+} */
 
 .modal-reset button:hover {
   background-color: var(--first-color);
