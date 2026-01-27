@@ -188,7 +188,7 @@ body {
 .board .characters {
   /* width: auto; */
   /* height: 8rem; */
-  margin: 1rem 0.5rem;
+  margin: 1.5rem 0.5rem 1rem;
   /* margin: 1rem 0.5rem 0.5rem; */
 
   display: flex;
@@ -200,8 +200,8 @@ body {
 
 .characters .character-selector {
   position: relative;
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
 
   display: flex;
   flex-direction: column;
@@ -217,7 +217,7 @@ body {
   width: 100%;
   height: 100%;
 
-  top: -16px;
+  top: -12px;
 
   transition:
     transform 0.3s ease,
@@ -254,7 +254,7 @@ body {
 
 .label {
   width: 4rem;
-  margin-top: 60px;
+  margin-top: 3.4375rem;
   /* padding: 0.2rem 0.4rem; */
 
   color: var(--fourth-color);
@@ -282,30 +282,25 @@ body {
   gap: 1rem;
 } */
 
-.characters .machine-options {
-  /* height: 5rem; */
+/* .characters .machine-options {
   padding: 0.5rem;
 
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /* align-items: center; */
   align-self: flex-end;
-  /* gap: 1rem; */
 
   border-radius: 0.5rem;
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(2rem);
   -webkit-backdrop-filter: blur(2rem);
 
-  /* background: rgb(0, 255, 255); */
 }
 
 .characters .machine-options .vs-computer {
   margin: 0 0 0.5rem 0;
   padding: 0.5rem 1rem;
 
-  /* border: 1px solid var(--first-color); */
   border: none;
   border-radius: 0.5rem;
 
@@ -313,23 +308,22 @@ body {
   backdrop-filter: blur(2rem);
   -webkit-backdrop-filter: blur(2rem);
 
-  /* background-color: rgb(15, 17, 26); */
 
   font-weight: bolder;
   cursor: pointer;
-}
+} */
 
-.machine-options label {
-  /* width: 100%; */
-}
+/* .machine-options label {
+} */
 
 .board .reset {
-  width: 8rem;
-  /* width: 120px; */
+  /* width: fit-content; */
+  width: 8.125rem;
+  height: 4.5rem;
   /* width: fit-content;
   height: fit-content; */
   margin: 0rem 0.5rem;
-  /* padding: 0 1.4rem; */
+  padding: 0 1rem;
 
   font-size: 0.9rem;
   text-wrap: balance;
